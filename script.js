@@ -1,14 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const resetButton = document.getElementById('resetButton');
-    
-    resetButton.addEventListener('click', function () {
-        updatePageOpenTime();
-    });
 
-    function updatePageOpenTime() {
-        localStorage.pageOpenTime, pageLoadTime = new Date().getTime();
-        alert("Page open time updated to the current time.");
-    }
 
     function doTheThing() {        
         localStorage.pageOpenTime = new Date().getTime();
@@ -19,7 +11,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const countDownDate = new Date("2023-11-28T00:00:00").getTime();
     let pageLoadTime = savedPageOpenTime ? parseInt(savedPageOpenTime) : doTheThing();
 
+    resetButton.addEventListener('click', function () {
+        updatePageOpenTime();
+    });
 
+    function updatePageOpenTime() {
+        localStorage.pageOpenTime = new Date().getTime();
+        pageLoadTime = new Date().getTime();
+        alert("Page open time updated to the current time.");
+    }
 
     const countdownInterval = setInterval(function () {
         const now = new Date().getTime();
