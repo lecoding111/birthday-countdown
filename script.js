@@ -10,9 +10,10 @@ document.addEventListener('DOMContentLoaded', function () {
         alert("Page open time updated to the current time.");
     }
 
-    const savedPageOpenTime = localStorage.pageOpenTime;
+    const savedPageOpenTime = localStorage.pageOpenTime; 
     const countDownDate = new Date("2023-11-28T00:00:00").getTime();
     const pageLoadTime = savedPageOpenTime ? parseInt(savedPageOpenTime) : new Date().getTime();
+    localStorage.pageOpenTime = new Date().getTime();
 
     const countdownInterval = setInterval(function () {
         const now = new Date().getTime();
@@ -25,7 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
 
         document.getElementById("countdown").innerHTML = `${days}D ${hours}H ${minutes}M ${seconds}S`;
-        document.getElementById("progress-bar").style.width = `${(elapsedTime / (countDownDate - pageLoadTime)) * 100}%`;
+
+        // Corrected progress bar calculation
+        const progress = (elapsedTime / (countDownDate - pageLoadTime)) * 100;
+        document.getElementById("progress-bar").style.width = progress >= 100 ? "100%" : `${progress}%`;
 
         if (remainingTime < 0) {
             clearInterval(countdownInterval);
