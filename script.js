@@ -6,13 +6,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function updatePageOpenTime() {
-        localStorage.pageOpenTime = new Date().getTime();
+        localStorage.pageOpenTime, pageLoadTime = new Date().getTime();
         alert("Page open time updated to the current time.");
     }
 
     const savedPageOpenTime = localStorage.pageOpenTime; 
     const countDownDate = new Date("2023-11-28T00:00:00").getTime();
-    const pageLoadTime = savedPageOpenTime ? parseInt(savedPageOpenTime) : new Date().getTime();
+    let pageLoadTime = savedPageOpenTime ? parseInt(savedPageOpenTime) : new Date().getTime();
     localStorage.pageOpenTime = new Date().getTime();
 
     const countdownInterval = setInterval(function () {
