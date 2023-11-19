@@ -10,10 +10,16 @@ document.addEventListener('DOMContentLoaded', function () {
         alert("Page open time updated to the current time.");
     }
 
+    function doTheThing() {        
+        localStorage.pageOpenTime = new Date().getTime();
+        return new Date().getTime();
+    }
+
     const savedPageOpenTime = localStorage.pageOpenTime; 
     const countDownDate = new Date("2023-11-28T00:00:00").getTime();
-    let pageLoadTime = savedPageOpenTime ? parseInt(savedPageOpenTime) : new Date().getTime();
-    localStorage.pageOpenTime = new Date().getTime();
+    let pageLoadTime = savedPageOpenTime ? parseInt(savedPageOpenTime) : doTheThing();
+
+
 
     const countdownInterval = setInterval(function () {
         const now = new Date().getTime();
